@@ -51,8 +51,9 @@ class TAE:
         opt = Adam(learning_rate=learning_rate)  # choose optimiser. RMS is good too!
 
         # alpha value is used in my another paper. Disabled for now, so we use the standard semi-hard triplet loss
+        # Triplet loss is also modified. See Triplet_loss L for details. 
         alpha_value = 0.0 
-        margin = 0.5
+        margin = 0.1
         triplet_loss = losses.triplet_semihard_loss(alpha_value, margin, num_class)
 
         self.model.compile(loss=[triplet_loss, 'binary_crossentropy'], loss_weights=[weight_triplet, 1], optimizer=opt)
