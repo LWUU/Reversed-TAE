@@ -159,8 +159,8 @@ def triplet_semihard_loss(alpha_value, margin, num_classes):
         # The original loss matrix is calcualted by: D_ap - D_an + margin. 
         # loss_mat = tf.math.add(margin, pdist_matrix - semi_hard_negatives)
 
-        # We modify it by calculating D_an - D_ap - margin, to maximize D_an and minimize D_ap
-        loss_mat = tf.math.add(-margin, semi_hard_negatives - pdist_matrix)
+        # We modify it by calculating D_an - D_ap + margin, to maximize D_an and minimize D_ap
+        loss_mat = tf.math.add(margin, semi_hard_negatives - pdist_matrix)
 
         mask_positives = tf.cast(adjacency, dtype=tf.dtypes.float32) - tf.linalg.diag(tf.ones([batch_size]))
 
